@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_logo"
+        android:contentDescription="HealthLine Logo" />
+
+    <TextView android:text="HealthLine"
+        android:textColor="#22C55E"
+        android:textSize="32sp"
+        android:textStyle="bold"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:text="Welcome back! Please login to your account."
+        android:textColor="#64748B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:textAlignment="center"/>
+
+    <EditText android:id="@+id/etEmail"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:hint="Email Address"
+              android:background="@drawable/curved_edittext"
+              android:paddingHorizontal="12dp"
+              android:layout_marginBottom="16dp" />
+
+    <EditText android:id="@+id/etPassword"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:hint="Password"
+              android:inputType="textPassword"
+              android:background="@drawable/curved_edittext"
+              android:paddingHorizontal="12dp"
+              android:layout_marginBottom="24dp" />
+
+    <Button android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Sign In"
+            android:backgroundTint="#22C55E"
+            android:textAllCaps="false" />
+
+    <TextView android:id="@+id/Register"
+              android:text="Don't have an account? Create Account"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:textSize="12sp" />
+</LinearLayout>
