@@ -3,6 +3,12 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Register from './pages/Register';
 
+// Import the role-specific dashboards
+import PatientDashboard from './pages/Patient/PatientDashboard';
+// IMPORT YOUR NEW CONSULTATION PAGE HERE
+import Consultation from './pages/Patient/Consultation';
+import DoctorDashboard from './pages/Doctor/Dashboard';
+
 function App() {
   return (
     <Router>
@@ -14,8 +20,16 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Placeholder for Dashboard */}
-        <Route path="/dashboard" element={<div className="p-10 text-2xl">Welcome to HealthLine Dashboard</div>} />
+        {/* Role-Based Dashboard Routes */}
+        <Route path="/patient/dashboard" element={<PatientDashboard />} />
+
+        {/* ADD THIS NEW ROUTE HERE */}
+        <Route path="/patient/consultations" element={<Consultation />} />
+
+        <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
+
+        {/* Catch-all redirect - This was catching your consultations click before! */}
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

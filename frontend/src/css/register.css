@@ -1,0 +1,62 @@
+/* src/css/register.css */
+
+.register-container {
+    @apply flex items-center justify-center min-h-screen bg-slate-50 py-12 px-4;
+}
+
+.register-card {
+    @apply w-full max-w-lg p-10 bg-white rounded-2xl shadow-xl border border-slate-100;
+}
+
+.register-header h1 {
+    @apply text-3xl font-bold text-green-600 tracking-tight;
+}
+
+.register-header p {
+    @apply text-slate-500 mt-2;
+}
+
+.form-group {
+    @apply mb-4;
+}
+
+.form-label {
+    @apply block text-sm font-medium text-slate-700 mb-1;
+}
+
+.form-input {
+    @apply w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all;
+}
+
+/* Specific styling for the Role Select dropdown */
+.form-select {
+    @apply w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all cursor-pointer;
+}
+
+/* Animation for the Doctor license field */
+.doctor-field-anim {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-register {
+    @apply w-full py-3 mt-4 bg-green-500 text-white rounded-lg font-semibold shadow-lg shadow-green-200 hover:bg-green-600 active:transform active:scale-[0.98] transition-all;
+}
+
+.register-footer {
+    @apply mt-8 text-center border-t border-slate-100 pt-6 text-sm text-slate-600;
+}
+
+.register-link {
+    @apply ml-1 text-green-600 font-semibold hover:text-green-700;
+}

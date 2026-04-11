@@ -1,0 +1,158 @@
+/* --- Consultation Page Specific Styles --- */
+
+/* Main container for the history table */
+.main-data-box-full {
+    background: white;
+    min-height: 500px;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow-x: auto; /* Ensures table is responsive on smaller screens */
+}
+
+/* Table Styling */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 15px;
+    background-color: #f8fbfa;
+    color: #4caf50; /* Matches your brand color */
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #e0f2f1;
+}
+
+.data-table td {
+    padding: 18px 15px;
+    border-bottom: 1px solid #f1f7f6;
+    color: #333;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.data-table tr:hover {
+    background-color: #fcfdfd; /* Subtle hover for rows */
+}
+
+/* Status Pills (Doctor's Decisions) */
+.status-pill {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Status Color Logic */
+.status-pill.pending {
+    background-color: #fff8e1;
+    color: #f57c00;
+}
+
+.status-pill.medication_provided {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-pill.hospital_visit_required {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Sidebar Navigation Hover (Critical for the "Click" feel) */
+.nav-box {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-box:hover:not(.active) {
+    background-color: #d1e7dd;
+    padding-left: 20px; /* Slight indent on hover */
+    color: #000;
+}
+
+.nav-box.active {
+    background-color: #4caf50;
+    color: white;
+    font-weight: 700;
+}
+
+/* Empty State Styling */
+.no-records {
+    text-align: center;
+    padding: 50px;
+    color: #888;
+    font-style: italic;
+}
+
+/* Divider Line */
+.divider-line {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 30px 0;
+}
+
+/* Consultation Form Styles */
+.request-section {
+    margin-bottom: 20px;
+}
+
+.complaint-textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0f2f1;
+    background-color: #fcfdfd;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical; /* Allows user to pull down but not sideways */
+    margin-top: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.complaint-textarea:focus {
+    outline: none;
+    border-color: #4caf50;
+    background-color: #fff;
+}
+
+.btn-submit-green {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.1s active;
+}
+
+.btn-submit-green:hover {
+    background-color: #45a049;
+}
+
+.btn-submit-green:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+}
+
+.divider-line {
+    height: 1px;
+    background-color: #f1f7f6;
+    margin: 40px 0;
+}
+
+.no-records {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-style: italic;
+}

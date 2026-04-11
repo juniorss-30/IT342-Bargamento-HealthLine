@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { registerUser } from '../api/auth';
 import { useNavigate, Link } from 'react-router-dom';
+import '../css/register.css';
 
 const Register = () => {
     const [form, setForm] = useState({
         fullName: '',
         email: '',
-        passwordHash: '',
+        password: '', // Aligned with Backend @JsonProperty
         role: 'PATIENT',
         licenseNumber: ''
     });
@@ -21,56 +22,57 @@ const Register = () => {
                 navigate('/login');
             }
         } catch (err) {
-            alert(err.response?.data?.error?.message || "Registration failed");
+            // Updated error handling to match your createResponse utility
+            alert(err.response?.data?.error || "Registration failed");
         }
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-slate-50 py-12 px-4">
-            <div className="w-full max-w-lg p-10 bg-white rounded-2xl shadow-xl border border-slate-100">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-green-600 tracking-tight">HealthLine</h1>
-                    <p className="text-slate-500 mt-2">Join our healthcare community today.</p>
+        <div className="register-container">
+            <div className="register-card">
+                <div className="register-header text-center mb-8">
+                    <h1>HealthLine</h1>
+                    <p>Join our healthcare community today.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                    <div className="form-group">
+                        <label className="form-label">Full Name</label>
                         <input
                             type="text"
                             placeholder="Juan Dela Cruz"
-                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                            className="form-input"
                             required
                             onChange={e => setForm({...form, fullName: e.target.value})}
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                    <div className="form-group">
+                        <label className="form-label">Email Address</label>
                         <input
                             type="email"
                             placeholder="juan@email.com"
-                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                            className="form-input"
                             required
                             onChange={e => setForm({...form, email: e.target.value})}
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                    <div className="form-group">
+                        <label className="form-label">Password</label>
                         <input
                             type="password"
                             placeholder="••••••••"
-                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                            className="form-input"
                             required
-                            onChange={e => setForm({...form, passwordHash: e.target.value})}
+                            onChange={e => setForm({...form, password: e.target.value})}
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Account Role</label>
+                    <div className="form-group">
+                        <label className="form-label">Account Role</label>
                         <select
-                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                            className="form-select"
                             value={form.role}
                             onChange={e => setForm({...form, role: e.target.value})}
                         >
@@ -80,30 +82,27 @@ const Register = () => {
                     </div>
 
                     {form.role === 'DOCTOR' && (
-                        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Professional License Number</label>
+                        <div className="doctor-field-anim">
+                            <label className="form-label">Professional License Number</label>
                             <input
                                 type="text"
                                 placeholder="PRC-1234567"
-                                className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                                className="form-input"
                                 required
                                 onChange={e => setForm({...form, licenseNumber: e.target.value})}
                             />
                         </div>
                     )}
 
-                    <button
-                        type="submit"
-                        className="w-full py-3 mt-4 bg-green-500 text-white rounded-lg font-semibold shadow-lg shadow-green-200 hover:bg-green-600 active:transform active:scale-[0.98] transition-all"
-                    >
+                    <button type="submit" className="btn-register">
                         Create Account
                     </button>
                 </form>
 
-                <div className="mt-8 text-center border-t border-slate-100 pt-6">
-                    <p className="text-sm text-slate-600">
-                        Already have an account?
-                        <Link to="/login" className="ml-1 text-green-600 font-semibold hover:text-green-700">
+                <div className="register-footer">
+                    <p>
+                        Already have an account?{' '}
+                        <Link to="/login" className="register-link">
                             Sign In
                         </Link>
                     </p>

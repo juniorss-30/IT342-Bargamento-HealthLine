@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api/auth';
 import { useNavigate, Link } from 'react-router-dom';
+import '../css/login.css';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -10,59 +11,70 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await loginUser(credentials);
+
             if (res.data.success) {
-                localStorage.setItem('user', JSON.stringify(res.data.data));
-                navigate('/dashboard');
+                const userData = res.data.data;
+
+                // 1. Store the full user object (includes fullName, email, and role)
+                localStorage.setItem('user', JSON.stringify(userData));
+
+                // 2. Role-Based Redirection Logic
+                if (userData.role === 'DOCTOR') {
+                    navigate('/doctor/dashboard');
+                } else if (userData.role === 'PATIENT') {
+                    navigate('/patient/dashboard');
+                } else {
+                    // Fallback for general dashboard
+                    navigate('/dashboard');
+                }
             }
         } catch (err) {
-            alert("Invalid email or password");
+            // Displays the specific error from your createResponse backend utility
+            const errorMsg = err.response?.data?.error || "Invalid email or password";
+            alert(errorMsg);
         }
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-slate-50">
-            {/* The "rounded-2xl" and "shadow-xl" provide the curved, modern look */}
-            <div className="w-full max-w-md p-10 bg-white rounded-2xl shadow-xl border border-slate-100">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-green-600 tracking-tight">HealthLine</h1>
-                    <p className="text-slate-500 mt-2">Welcome back! Please login to your account.</p>
+        <div className="login-container">
+            <div className="login-card">
+                <div className="login-header text-center mb-8">
+                    <h1>HealthLine</h1>
+                    <p>Welcome back! Please login to your account.</p>
                 </div>
 
-                <form onSubmit={handleLogin} className="space-y-5">
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                <form onSubmit={handleLogin}>
+                    <div className="form-group">
+                        <label className="form-label">Email Address</label>
                         <input
                             type="email"
                             placeholder="name@email.com"
-                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+                            className="form-input"
                             required
                             onChange={e => setCredentials({...credentials, email: e.target.value})}
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                    <div className="form-group">
+                        <label className="form-label">Password</label>
                         <input
                             type="password"
                             placeholder="••••••••"
-                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+                            className="form-input"
                             required
                             onChange={e => setCredentials({...credentials, password: e.target.value})}
                         />
                     </div>
 
-                    <button
-                        type="submit"
-                        className="w-full py-3 bg-green-500 text-white rounded-lg font-semibold shadow-lg shadow-green-200 hover:bg-green-600 active:transform active:scale-[0.98] transition-all"
-                    >
+                    <button type="submit" className="btn-login">
                         Sign In
                     </button>
                 </form>
 
-                <div className="mt-8 text-center border-t border-slate-100 pt-6">
-                    <p className="text-sm text-slate-600">
-                        Don't have an account?
-                        <Link to="/register" className="ml-1 text-green-600 font-semibold hover:text-green-700">
+                <div className="login-footer">
+                    <p>
+                        Don't have an account?{' '}
+                        <Link to="/register" className="login-link">
                             Create Account
                         </Link>
                     </p>

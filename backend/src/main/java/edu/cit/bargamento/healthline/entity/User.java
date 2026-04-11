@@ -1,6 +1,7 @@
 package edu.cit.bargamento.healthline.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +18,7 @@ public class User {
     private String email;
 
     @Column(name = "password_hash", nullable = false)
+    @JsonProperty("password") // This maps JSON "password" to this variable
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
