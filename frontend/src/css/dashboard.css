@@ -168,3 +168,25 @@ textarea {
     flex-direction: column;
     height: 100%;
 }
+
+/* Show full complaint clearly */
+.full-view {
+    max-width: 600px;
+    white-space: normal;
+    line-height: 1.6;
+}
+
+/* Decision button */
+.btn-decide {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-decide:hover {
+    background-color: #388e3c;
+}

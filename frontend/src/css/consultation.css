@@ -156,3 +156,109 @@
     color: #999;
     font-style: italic;
 }
+
+/* --- Doctor Decision Card --- */
+.decision-section {
+    margin-top: 10px;
+}
+
+.decision-card {
+    background: linear-gradient(135deg, #f8fbfa, #ffffff);
+    border: 1px solid #e0f2f1;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease;
+}
+
+.decision-card:hover {
+    transform: translateY(-2px);
+}
+
+.decision-date {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.decision-complaint {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.decision-status {
+    margin-top: 10px;
+}
+/* Submit button aligned right */
+.submit-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* --- Enhanced Doctor Decision Card --- */
+.decision-card {
+    background: linear-gradient(135deg, #f8fbfa, #ffffff);
+    border: 1px solid #e0f2f1;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
+}
+
+.decision-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Header */
+.decision-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.decision-icon {
+    font-size: 28px;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.decision-title {
+    font-weight: 700;
+    color: #2e7d32;
+    margin: 0;
+}
+
+.decision-date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Body */
+.decision-body {
+    margin-top: 10px;
+}
+
+.decision-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #4caf50;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.decision-complaint {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Footer */
+.decision-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}

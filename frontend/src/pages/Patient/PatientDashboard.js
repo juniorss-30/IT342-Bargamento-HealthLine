@@ -33,8 +33,6 @@ const PatientDashboard = () => {
                 <h2 className="brand-logo">HealthLine</h2>
                 <nav className="nav-list">
                     <div className="nav-box active">Dashboard</div>
-
-                    {/* Added onClick to navigate to your Consultation.js file */}
                     <div
                         className="nav-box"
                         onClick={() => navigate('/patient/consultations')}

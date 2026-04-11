@@ -1,0 +1,213 @@
+/* ===== NEW ADDITIONS (DO NOT REMOVE EXISTING CSS) ===== */
+
+/* Show full complaint clearly */
+.full-view {
+    max-width: 600px;
+    white-space: normal;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Single decision button */
+.btn-decide {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Hover (same theme) */
+.btn-decide:hover {
+    background-color: #388e3c;
+}
+
+/* Better alignment for long complaints */
+.queue-table td {
+    vertical-align: top;
+}
+
+/* Container Layout */
+.queue-page-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f8f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar Styling */
+.queue-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e6e5;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+}
+
+.queue-logo {
+    color: #4caf50;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+}
+
+.q-nav-item {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #555;
+}
+
+.q-nav-item:hover {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+
+.q-nav-item.active {
+    background-color: #4caf50;
+    color: white;
+    font-weight: 600;
+}
+
+.q-nav-logout {
+    margin-top: auto;
+    padding: 12px 15px;
+    color: #d32f2f;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.q-nav-logout:hover {
+    background-color: #ffebee;
+}
+
+/* Main Content Area */
+.queue-main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-info h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0;
+}
+
+.header-info p {
+    color: #888;
+    margin: 5px 0 0 0;
+}
+
+.doctor-tag {
+    background: #ffffff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    font-weight: 600;
+}
+
+/* Table Design */
+.queue-table-container {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.queue-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.queue-table th {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 2px solid #f0f4f3;
+    color: #999;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.queue-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #f8fbfb;
+    vertical-align: middle;
+}
+
+.patient-name {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.complaint-text {
+    max-width: 350px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Status Badges */
+.q-status {
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.q-status.pending { background: #fff8e1; color: #f57c00; }
+.q-status.medication_provided { background: #e8f5e9; color: #2e7d32; }
+.q-status.hospital_visit_required { background: #ffebee; color: #c62828; }
+
+/* Action Buttons */
+.q-action-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-med, .btn-hospital {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.btn-med {
+    background-color: #4caf50;
+    color: white;
+}
+
+.btn-med:hover {
+    background-color: #388e3c;
+}
+
+.btn-hospital {
+    background-color: #ef5350;
+    color: white;
+}
+
+.btn-hospital:hover {
+    background-color: #d32f2f;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+}

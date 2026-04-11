@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../css/dashboard.css';
+import '../../css/consultation.css';
 
 const Consultation = () => {
     const [history, setHistory] = useState([]);
@@ -51,6 +52,8 @@ const Consultation = () => {
         }
     };
 
+    const latest = history.length > 0 ? history[history.length - 1] : null;
+
     return (
         <div className="full-screen-dashboard">
             <aside className="sidebar-full">
@@ -59,7 +62,13 @@ const Consultation = () => {
                     <div className="nav-box" onClick={() => navigate('/patient/dashboard')}>Dashboard</div>
                     <div className="nav-box active">Consultations</div>
                     <div className="nav-box">Medication</div>
-                    <div className="nav-box logout-box" onClick={() => { localStorage.clear(); navigate('/login'); }}>
+                    <div
+                        className="nav-box logout-box"
+                        onClick={() => {
+                            localStorage.clear();
+                            navigate('/login');
+                        }}
+                    >
                         Logout
                     </div>
                 </nav>
@@ -72,56 +81,81 @@ const Consultation = () => {
                 </header>
 
                 <div className="main-data-box-full">
+
                     {/* Input Section */}
                     <div className="request-section">
                         <h3>Request New Consultation</h3>
-                        <p className="subtitle">Tell us what's wrong, and a doctor will review your case.</p>
+                        <p className="subtitle">
+                            Tell us what's wrong, and a doctor will review your case.
+                        </p>
+
                         <form onSubmit={handleSubmit}>
                             <textarea
                                 className="complaint-textarea"
                                 value={complaint}
                                 onChange={(e) => setComplaint(e.target.value)}
-                                placeholder="e.g. I have a persistent cough and fever..."
-                                rows="4"
+                                placeholder={`Please describe in detail:
+
+• What symptoms are you experiencing?
+• When did it start?
+• How severe is it?
+• Any medication taken?
+
+Example:
+"I’ve had a cough for 5 days, mild fever at night, and headaches..."`}
+                                rows="6"
                             />
-                            <button
-                                type="submit"
-                                className="btn-submit-green"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? 'Sending...' : 'Submit to Doctor'}
-                            </button>
+
+                            <div className="submit-container">
+                                <button
+                                    type="submit"
+                                    className="btn-submit-green"
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? 'Sending...' : 'Submit to Doctor'}
+                                </button>
+                            </div>
                         </form>
                     </div>
 
                     <div className="divider-line"></div>
 
-                    {/* History Section */}
-                    <h3>History</h3>
-                    <table className="data-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Doctor Decision</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {history.length > 0 ? history.map(h => (
-                                <tr key={h.id}>
-                                    <td>{new Date(h.createdAt).toLocaleDateString()}</td>
-                                    <td>{h.chiefComplaint}</td>
-                                    <td>
-                                        <span className={`status-pill ${h.status.toLowerCase()}`}>
-                                            {h.status.replace(/_/g, ' ')}
-                                        </span>
-                                    </td>
-                                </tr>
-                            )) : (
-                                <tr><td colSpan="3" className="no-records">No consultations found.</td></tr>
-                            )}
-                        </tbody>
-                    </table>
+                    {/* Doctor Decision Section */}
+                    <div className="decision-section">
+                        <h3>Doctor Decision</h3>
+
+                        {latest ? (
+                            <div className="decision-card">
+
+                                <div className="decision-header">
+                                    <div className="decision-icon">🩺</div>
+                                    <div>
+                                        <p className="decision-title">Latest Review</p>
+                                        <p className="decision-date">
+                                            {new Date(latest.createdAt).toLocaleString()}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="decision-body">
+                                    <p className="decision-label">Your Concern</p>
+                                    <p className="decision-complaint">
+                                        {latest.chiefComplaint}
+                                    </p>
+                                </div>
+
+                                <div className="decision-footer">
+                                    <span className={`status-pill ${latest.status.toLowerCase()}`}>
+                                        {latest.status.replace(/_/g, ' ')}
+                                    </span>
+                                </div>
+
+                            </div>
+                        ) : (
+                            <div className="no-records">No doctor decisions yet.</div>
+                        )}
+                    </div>
+
                 </div>
             </main>
         </div>
