@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import PatientDashboard from './pages/Patient/PatientDashboard';
-import Consultation from './pages/Patient/Consultation';
-import DoctorDashboard from './pages/Doctor/Dashboard';
-import PatientQueue from './pages/Doctor/PatientQueue';
-import Schedules from './pages/Doctor/Schedules';
-import Medications from './pages/Patient/Medications';
+import Login from './features/authentication/Login';
+import Register from './features/authentication/Register';
+import PatientDashboard from './layout/PatientDashboard';
+import Consultation from './features/consultation/Consultation';
+import DoctorDashboard from './layout/Dashboard';
+import PatientQueue from './features/doctor-management/PatientQueue';
+import Schedules from './features/doctor-management/Schedules';
+import Medications from './features/patient-management/Medications';
 
 function App() {
   return (
