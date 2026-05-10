@@ -1,0 +1,71 @@
+/* Medication Specific Styles */
+.medication-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.med-card-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    border-top: 4px solid #4caf50;
+}
+
+.med-status-indicator {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f0fdf4;
+    color: #166534;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.med-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.med-header-info h4 {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.med-details-text {
+    font-size: 1.1rem;
+    color: #1e293b;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.med-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 10px;
+}
+
+.date-issued {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.no-data-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    background: #f8fafc;
+    border-radius: 12px;
+    color: #94a3b8;
+    border: 2px dashed #e2e8f0;
+}

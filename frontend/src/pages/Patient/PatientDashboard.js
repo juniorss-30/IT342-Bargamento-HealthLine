@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import '../../css/dashboard.css';
+import '../../css/patientdashboard.css';
 
 const PatientDashboard = () => {
     const [complaint, setComplaint] = useState('');
@@ -41,7 +41,7 @@ const PatientDashboard = () => {
                         Consultations
                     </div>
 
-                    <div className="nav-box">Medication</div>
+                    <div className="nav-box">Prescription</div>
                     <div className="nav-box">Settings</div>
 
                     {/* Logout Button inside the Sidebar */}

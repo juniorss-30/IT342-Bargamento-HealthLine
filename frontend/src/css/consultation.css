@@ -262,3 +262,27 @@
     display: flex;
     justify-content: flex-end;
 }
+
+/* --- New Grid Layout for History --- */
+.decision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Update your existing decision-card style to allow flex spacing */
+.decision-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px; /* Ensures uniform height in cards */
+}
+
+/* Ensure empty state centers in the grid */
+.no-records {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    color: #999;
+}

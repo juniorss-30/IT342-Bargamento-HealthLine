@@ -27,10 +27,15 @@ public class ConsultationController {
         return repository.findAll();
     }
 
-    @PatchMapping("/{id}/status") // Status Update
-    public Consultation updateStatus(@PathVariable Long id, @RequestBody String status) {
-        Consultation c = repository.findById(id).orElseThrow();
-        c.setStatus(status.replace("\"", ""));
+    @PutMapping("/{id}")
+    public Consultation updateStatus(@PathVariable Long id, @RequestBody java.util.Map<String, String> updates) {
+        Consultation c = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Consultation not found"));
+
+        if (updates.containsKey("status")) {
+            c.setStatus(updates.get("status"));
+        }
+
         return repository.save(c);
     }
 }

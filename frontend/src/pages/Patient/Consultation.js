@@ -18,7 +18,9 @@ const Consultation = () => {
         if (!user.email) return;
         try {
             const res = await axios.get('http://localhost:8080/api/v1/consultations');
-            setHistory(res.data.filter(c => c.patientEmail === user.email));
+            // Filter by user email and reverse so newest is first
+            const filtered = res.data.filter(c => c.patientEmail === user.email);
+            setHistory(filtered.reverse());
         } catch (err) {
             console.error("Error fetching consultations:", err);
         }
@@ -52,8 +54,6 @@ const Consultation = () => {
         }
     };
 
-    const latest = history.length > 0 ? history[history.length - 1] : null;
-
     return (
         <div className="full-screen-dashboard">
             <aside className="sidebar-full">
@@ -61,14 +61,9 @@ const Consultation = () => {
                 <nav className="nav-list">
                     <div className="nav-box" onClick={() => navigate('/patient/dashboard')}>Dashboard</div>
                     <div className="nav-box active">Consultations</div>
-                    <div className="nav-box">Medication</div>
-                    <div
-                        className="nav-box logout-box"
-                        onClick={() => {
-                            localStorage.clear();
-                            navigate('/login');
-                        }}
-                    >
+                    <div className="nav-box" onClick={() => navigate('/patient/medications')}>Prescription</div>
+                    <div className="nav-box">Settings</div>
+                    <div className="nav-box logout-box" onClick={() => { localStorage.clear(); navigate('/login'); }}>
                         Logout
                     </div>
                 </nav>
@@ -81,37 +76,20 @@ const Consultation = () => {
                 </header>
 
                 <div className="main-data-box-full">
-
-                    {/* Input Section */}
                     <div className="request-section">
                         <h3>Request New Consultation</h3>
-                        <p className="subtitle">
-                            Tell us what's wrong, and a doctor will review your case.
-                        </p>
+                        <p className="subtitle">Tell us what's wrong, and a doctor will review your case.</p>
 
                         <form onSubmit={handleSubmit}>
                             <textarea
                                 className="complaint-textarea"
                                 value={complaint}
                                 onChange={(e) => setComplaint(e.target.value)}
-                                placeholder={`Please describe in detail:
-
-• What symptoms are you experiencing?
-• When did it start?
-• How severe is it?
-• Any medication taken?
-
-Example:
-"I’ve had a cough for 5 days, mild fever at night, and headaches..."`}
+                                placeholder="Describe your symptoms here..."
                                 rows="6"
                             />
-
                             <div className="submit-container">
-                                <button
-                                    type="submit"
-                                    className="btn-submit-green"
-                                    disabled={isSubmitting}
-                                >
+                                <button type="submit" className="btn-submit-green" disabled={isSubmitting}>
                                     {isSubmitting ? 'Sending...' : 'Submit to Doctor'}
                                 </button>
                             </div>
@@ -120,42 +98,39 @@ Example:
 
                     <div className="divider-line"></div>
 
-                    {/* Doctor Decision Section */}
                     <div className="decision-section">
-                        <h3>Doctor Decision</h3>
+                        <h3>Consultation History</h3>
+                        <div className="decision-grid">
+                            {history.length > 0 ? (
+                                history.map((item) => (
+                                    <div className="decision-card" key={item.id}>
+                                        <div className="decision-header">
+                                            <div className="decision-icon">🩺</div>
+                                            <div>
+                                                <p className="decision-title">Latest Review</p>
+                                                <p className="decision-date">
+                                                    {new Date(item.createdAt).toLocaleString()}
+                                                </p>
+                                            </div>
+                                        </div>
 
-                        {latest ? (
-                            <div className="decision-card">
+                                        <div className="decision-body">
+                                            <p className="decision-label">Your Concern</p>
+                                            <p className="decision-complaint">{item.chiefComplaint}</p>
+                                        </div>
 
-                                <div className="decision-header">
-                                    <div className="decision-icon">🩺</div>
-                                    <div>
-                                        <p className="decision-title">Latest Review</p>
-                                        <p className="decision-date">
-                                            {new Date(latest.createdAt).toLocaleString()}
-                                        </p>
+                                        <div className="decision-footer">
+                                            <span className={`status-pill ${item.status.toLowerCase()}`}>
+                                                {item.status.replace(/_/g, ' ')}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div className="decision-body">
-                                    <p className="decision-label">Your Concern</p>
-                                    <p className="decision-complaint">
-                                        {latest.chiefComplaint}
-                                    </p>
-                                </div>
-
-                                <div className="decision-footer">
-                                    <span className={`status-pill ${latest.status.toLowerCase()}`}>
-                                        {latest.status.replace(/_/g, ' ')}
-                                    </span>
-                                </div>
-
-                            </div>
-                        ) : (
-                            <div className="no-records">No doctor decisions yet.</div>
-                        )}
+                                ))
+                            ) : (
+                                <div className="no-records">No consultation records found.</div>
+                            )}
+                        </div>
                     </div>
-
                 </div>
             </main>
         </div>

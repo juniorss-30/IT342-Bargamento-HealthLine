@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         // Permit the consultation endpoints so you can demo the main feature
                         .requestMatchers("/api/v1/consultations/**").permitAll()
+                        .requestMatchers("/api/v1/medications/**", "/api/v1/schedules/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
