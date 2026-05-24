@@ -9,7 +9,6 @@ const Medications = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Retrieve the user from localStorage to get their email
     const user = JSON.parse(localStorage.getItem('user')) || { fullName: 'Patient', email: '' };
 
     useEffect(() => {
@@ -20,7 +19,6 @@ const Medications = () => {
 
     const fetchMedications = async (email) => {
         try {
-            // Fetch medications filtered by the patient's email
             const res = await axios.get(`http://localhost:8080/api/v1/medications?email=${email}`);
             setMedications(res.data);
         } catch (err) {
@@ -30,7 +28,6 @@ const Medications = () => {
 
     return (
         <div className="full-screen-dashboard">
-            {/* Consistent Patient Sidebar */}
             <aside className="sidebar-full">
                 <h2 className="brand-logo">HealthLine</h2>
                 <nav className="nav-list">
@@ -77,8 +74,7 @@ const Medications = () => {
                                     <div className="med-status-indicator">Active</div>
                                     <div className="med-content">
                                         <div className="med-header-info">
-                                            <span className="med-icon">💊</span>
-                                            <h4>Instructions</h4>
+                                            <h4>Prescription</h4>
                                         </div>
                                         <p className="med-details-text">{med.details}</p>
                                         <div className="med-footer">

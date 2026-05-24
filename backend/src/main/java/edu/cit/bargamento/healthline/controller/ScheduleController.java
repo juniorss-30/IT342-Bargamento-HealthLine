@@ -20,7 +20,15 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public List<Schedule> getAll() {
-        return repository.findAll();
+    public List<Schedule> getAll(@RequestParam(required = false) String email) {
+        if (email != null) {
+            return repository.findByPatientEmailAndStatusNot(email, "COMPLETED");
+        }
+        return repository.findByStatusNot("COMPLETED");
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        repository.deleteById(id);
     }
 }

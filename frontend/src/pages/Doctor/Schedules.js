@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import '../../css/dashboard.css';    // Sidebar and Main Layout
-import '../../css/patientqueue.css'; // Shared button styles
-import '../../css/schedules.css';    // Specific Card Layout
+import '../../css/dashboard.css';
+import '../../css/patientqueue.css';
+import '../../css/schedules.css';
 
 const Schedules = () => {
     const navigate = useNavigate();
@@ -31,7 +31,8 @@ const Schedules = () => {
             alert("Appointment marked as completed!");
             fetchSchedules();
         } catch (err) {
-            alert("Failed to update schedule.");
+            console.error("Mark as done error:", err);
+            alert("Failed to update schedule. Check console.");
         }
     };
 
@@ -65,19 +66,25 @@ const Schedules = () => {
                     <div className="schedule-grid">
                         {schedules.length > 0 ? (
                             schedules.map((s) => (
-                                <div className="appointment-card" key={s.id}>
-                                    <div className="status-badge">Confirmed</div>
-                                    <div className="patient-info">
-                                        <p className="label">Patient Name</p>
-                                        <p className="value">{s.patientName}</p>
+                                <div className="schedule-card" key={s.id}>
+                                    <div className="schedule-card-header">
+                                        <span className="schedule-status-badge">Confirmed</span>
                                     </div>
-                                    <div className="time-info">
-                                        <p className="label">Appointment Details</p>
-                                        <p className="value">{s.appointmentDetails}</p>
+                                    <div className="schedule-card-body">
+                                        <div className="schedule-info-block">
+                                            <p className="schedule-label">Patient Name</p>
+                                            <p className="schedule-value">{s.patientName}</p>
+                                        </div>
+                                        <div className="schedule-info-block">
+                                            <p className="schedule-label">Appointment Details</p>
+                                            <p className="schedule-value">{s.appointmentDetails}</p>
+                                        </div>
                                     </div>
-                                    <button className="complete-btn" onClick={() => markAsDone(s.id)}>
-                                        Mark as Done
-                                    </button>
+                                    <div className="schedule-card-footer">
+                                        <button className="schedule-complete-btn" onClick={() => markAsDone(s.id)}>
+                                            Mark as Done
+                                        </button>
+                                    </div>
                                 </div>
                             ))
                         ) : (

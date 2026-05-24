@@ -1,30 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import '../../css/dashboard.css'; // Maintains your sidebar and main layout
-import '../../css/patientqueue.css'; // Handles table, buttons, and expansion forms
+import '../../css/dashboard.css';
+import '../../css/patientqueue.css';
 
 const PatientQueue = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Data State
     const [consultations, setConsultations] = useState([]);
     const [activeId, setActiveId] = useState(null);
-    const [mode, setMode] = useState(''); // Tracks 'MED' or 'SCHED' form
+    const [mode, setMode] = useState('');
 
-    // Form States
     const [medDetails, setMedDetails] = useState('');
     const [schedDate, setSchedDate] = useState('');
     const [schedTime, setSchedTime] = useState('');
 
     const user = JSON.parse(localStorage.getItem('user')) || { fullName: 'Doctor' };
 
-    // Fetch pending consultations from backend
     const fetchConsultations = useCallback(() => {
         axios.get('http://localhost:8080/api/v1/consultations')
             .then(res => {
-                // Filter to only show PENDING triage requests
                 setConsultations(res.data.filter(q => q.status === 'PENDING'));
             })
             .catch(err => console.error("Error fetching consultations:", err));
@@ -34,7 +30,6 @@ const PatientQueue = () => {
         fetchConsultations();
     }, [fetchConsultations]);
 
-    // Reset selection and form inputs
     const resetSelection = () => {
         setActiveId(null);
         setMode('');
@@ -43,7 +38,6 @@ const PatientQueue = () => {
         setSchedTime('');
     };
 
-    // Handle Submission for Medication or Scheduling
     const handleAction = async (patient, type) => {
         try {
             if (type === 'MED') {
@@ -64,7 +58,9 @@ const PatientQueue = () => {
                 });
                 await axios.post('http://localhost:8080/api/v1/schedules', {
                     patientName: patient.patientName,
-                    appointmentDetails: `${schedDate} at ${schedTime}`
+                    patientEmail: patient.patientEmail,
+                    appointmentDetails: `${schedDate} at ${schedTime}`,
+                    status: 'PENDING'
                 });
             }
 
@@ -79,7 +75,6 @@ const PatientQueue = () => {
 
     return (
         <div className="full-screen-dashboard">
-            {/* SIDEBAR - Uses location.pathname to stay active on reload */}
             <aside className="sidebar-full">
                 <h2 className="brand-logo">HealthLine</h2>
                 <nav className="nav-list">
@@ -108,7 +103,6 @@ const PatientQueue = () => {
                 </nav>
             </aside>
 
-            {/* MAIN CONTENT AREA */}
             <main className="main-viewport">
                 <header className="content-header">
                     <h2 className="section-title">Patient Queue</h2>
@@ -133,7 +127,6 @@ const PatientQueue = () => {
                         {consultations.length > 0 ? (
                             consultations.map((c) => (
                                 <React.Fragment key={c.id}>
-                                    {/* Main Patient Row */}
                                     <tr className={activeId === c.id ? "row-selected" : ""}>
                                         <td className="patient-name-cell">{c.patientName}</td>
                                         <td className="complaint-preview-cell">{c.chiefComplaint}</td>
@@ -149,7 +142,6 @@ const PatientQueue = () => {
                                         </td>
                                     </tr>
 
-                                    {/* Professional Expansion Form */}
                                     {activeId === c.id && (
                                         <tr className="expansion-row">
                                             <td colSpan="3">

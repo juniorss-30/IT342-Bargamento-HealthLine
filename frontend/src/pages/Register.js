@@ -76,8 +76,8 @@ const Register = () => {
                             value={form.role}
                             onChange={e => setForm({...form, role: e.target.value})}
                         >
-                            <option value="PATIENT">Patient</option>
-                            <option value="DOCTOR">Doctor</option>
+                            <option value="PATIENT">PATIENT</option>
+                            <option value="DOCTOR">DOCTOR</option>
                         </select>
                     </div>
 

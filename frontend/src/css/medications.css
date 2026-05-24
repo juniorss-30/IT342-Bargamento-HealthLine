@@ -69,3 +69,95 @@
     color: #94a3b8;
     border: 2px dashed #e2e8f0;
 }
+
+/* Location: src/css/medications.css */
+
+.medication-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.med-card-item {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.med-card-item:hover {
+    border-color: #4caf50;
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.08);
+}
+
+.med-status-indicator {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #e8f5e9;
+    color: #4caf50;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.med-content {
+    padding-right: 60px;
+}
+
+.med-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.med-icon {
+    font-size: 1.4rem;
+}
+
+.med-header-info h4 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.med-details-text {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+    background: #fafafa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 3px solid #4caf50;
+}
+
+.med-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.date-issued {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.no-data-msg {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+    font-size: 0.95rem;
+}
+
+.no-data-msg p {
+    margin: 0;
+}

@@ -1,3 +1,5 @@
+/* Location: src/css/patientdashboard.css */
+
 /* Removes default browser margins */
 body, html {
     margin: 0;
@@ -10,7 +12,7 @@ body, html {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: #f1f7f6; /* The light teal background for the whole app */
+    background-color: #f1f7f6;
 }
 
 /* Sidebar spans 100% height */
@@ -32,6 +34,12 @@ body, html {
     text-align: center;
 }
 
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .nav-box {
     background-color: #e0f2f1;
     height: 40px;
@@ -43,6 +51,11 @@ body, html {
     color: #555;
     font-size: 0.9rem;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-box:hover {
+    background-color: #b2dfdb;
 }
 
 .nav-box.active {
@@ -64,24 +77,60 @@ body, html {
     margin-bottom: 30px;
 }
 
+.section-title {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.user-label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* ── Summary Cards ─────────────────────────── */
 .summary-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
     margin-bottom: 30px;
 }
 
 .summary-card {
     background: white;
-    height: 55px;
-    border-radius: 10px;
+    height: 90px;
+    border-radius: 14px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding-left: 20px;
-    color: #999;
+    justify-content: center;
+    padding: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: all 0.2s ease;
+    width: 100%;
 }
 
-/* The Data Box now expands */
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4caf50;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* ── Main Data Box ─────────────────────────── */
 .main-data-box-full {
     background: white;
     min-height: 500px;
@@ -90,12 +139,135 @@ body, html {
     box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
+/* ── Status Section ────────────────────────── */
+.status-section h3 {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* ── Decision Card (Current Status) ────────── */
+.decision-card {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+
+.decision-card:hover {
+    border-color: #4caf50;
+    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.08);
+}
+
+.decision-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.decision-icon {
+    width: 40px;
+    height: 40px;
+    background: #e8f5e9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.decision-title {
+    color: #4caf50;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.decision-date {
+    color: #999;
+    font-size: 0.8rem;
+    margin: 2px 0 0 0;
+}
+
+.decision-body {
+    margin-bottom: 16px;
+}
+
+.decision-label {
+    color: #4caf50;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+.decision-complaint {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.decision-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ── Status Pills ──────────────────────────── */
+.status-pill {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-pill.pending {
+    background: #fff8e1;
+    color: #f9a825;
+    border: 1px solid #ffe082;
+}
+
+.status-pill.completed,
+.status-pill.resolved,
+.status-pill.closed {
+    background: #e8f5e9;
+    color: #4caf50;
+    border: 1px solid #a5d6a7;
+}
+
+.status-pill.rejected,
+.status-pill.cancelled {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* ── No Records ────────────────────────────── */
+.no-records {
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px dashed #ddd;
+}
+
+/* ── Divider ───────────────────────────────── */
 .divider-line {
     height: 1px;
     background-color: #f0f0f0;
     margin: 40px 0;
 }
 
+/* ── Form Elements ───────────────────────── */
 textarea {
     width: 100%;
     height: 150px;
@@ -108,14 +280,13 @@ textarea {
     resize: none;
 }
 
-/* Subtitle for the doctor's view */
 .subtitle {
     color: #888;
     font-size: 0.9rem;
     margin-top: 5px;
 }
 
-/* Action button for the table */
+/* ── Buttons ───────────────────────────────── */
 .btn-action {
     background-color: #e0f2f1;
     border: 1px solid #4caf50;
@@ -132,7 +303,36 @@ textarea {
     color: white;
 }
 
-/* Ensure data table is clean */
+.btn-decide {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-decide:hover {
+    background-color: #388e3c;
+}
+
+.btn-view-all {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #2c7a7b;
+    color: #2c7a7b;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-view-all:hover {
+    background: #2c7a7b;
+    color: white;
+}
+
+/* ── Data Table ────────────────────────────── */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -152,7 +352,7 @@ textarea {
     font-size: 0.9rem;
 }
 
-/* Sidebar Logout Styling */
+/* ── Sidebar Logout ────────────────────────── */
 .logout-box {
     margin-top: auto;
     background-color: #ffebee;
@@ -163,30 +363,112 @@ textarea {
     background-color: #ef9a9a;
     color: #ffffff;
 }
-.nav-list {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
 
-/* Show full complaint clearly */
+/* ── Utilities ─────────────────────────────── */
 .full-view {
     max-width: 600px;
     white-space: normal;
     line-height: 1.6;
 }
 
-/* Decision button */
-.btn-decide {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
+/* ── Scrollbar ─────────────────────────────── */
+.main-viewport::-webkit-scrollbar {
+    width: 6px;
 }
 
-.btn-decide:hover {
-    background-color: #388e3c;
+.main-viewport::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-viewport::-webkit-scrollbar-thumb {
+    background: #c8e6c9;
+    border-radius: 3px;
+}
+
+.main-viewport::-webkit-scrollbar-thumb:hover {
+    background: #a5d6a7;
+}
+
+.appointment-section {
+    margin-bottom: 24px;
+}
+
+.appointment-section h3 {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.appointment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.appointment-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.2s ease;
+}
+
+.appointment-card:hover {
+    border-color: #4caf50;
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.08);
+}
+
+.appointment-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.appointment-icon {
+    width: 44px;
+    height: 44px;
+    background: #e8f5e9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.appointment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.appointment-title {
+    color: #4caf50;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.appointment-time {
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.appointment-badge {
+    background: #e8f5e9;
+    color: #4caf50;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
