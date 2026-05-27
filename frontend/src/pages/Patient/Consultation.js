@@ -1,5 +1,3 @@
-/* Location: src/pages/Patient/Consultation.js */
-
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +16,6 @@ const Consultation = () => {
         if (!user.email) return;
         try {
             const res = await axios.get('http://localhost:8080/api/v1/consultations');
-            // Filter by user email and reverse so newest is first
             const filtered = res.data.filter(c => c.patientEmail === user.email);
             setHistory(filtered.reverse());
         } catch (err) {
@@ -62,7 +59,7 @@ const Consultation = () => {
                     <div className="nav-box" onClick={() => navigate('/patient/dashboard')}>Dashboard</div>
                     <div className="nav-box active">Consultations</div>
                     <div className="nav-box" onClick={() => navigate('/patient/medications')}>Prescription</div>
-                    <div className="nav-box">Settings</div>
+                    <div className="nav-box" onClick={() => navigate('/patient/settings')} style={{ cursor: 'pointer' }}>Settings</div>
                     <div className="nav-box logout-box" onClick={() => { localStorage.clear(); navigate('/login'); }}>
                         Logout
                     </div>

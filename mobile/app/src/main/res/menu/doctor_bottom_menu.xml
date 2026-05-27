@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard"
+        android:icon="@android:drawable/ic_menu_view"/>
+
+    <item
+        android:id="@+id/nav_patient_queue"
+        android:title="Queue"
+        android:icon="@android:drawable/ic_menu_agenda"/>
+
+    <item
+        android:id="@+id/nav_schedules"
+        android:title="Schedule"
+        android:icon="@android:drawable/ic_menu_my_calendar"/>
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+        android:icon="@android:drawable/ic_menu_manage"/>
+
+</menu>

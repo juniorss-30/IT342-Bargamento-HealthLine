@@ -63,7 +63,9 @@ const PatientDashboard = () => {
                     <div className="nav-box" onClick={() => navigate('/patient/medications')} style={{ cursor: 'pointer' }}>
                         Prescription
                     </div>
-                    <div className="nav-box">Settings</div>
+                    <div className="nav-box" onClick={() => navigate('/patient/settings')} style={{ cursor: 'pointer' }}>
+                        Settings
+                    </div>
                     <div className="nav-box logout-box" onClick={handleLogout} style={{ cursor: 'pointer' }}>
                         Logout
                     </div>

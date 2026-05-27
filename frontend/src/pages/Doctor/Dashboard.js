@@ -52,7 +52,10 @@ const DoctorDashboard = () => {
                          onClick={() => navigate('/doctor/schedules')}>
                         Schedules
                     </div>
-                    <div className="nav-box">Settings</div>
+                    <div className={`nav-box ${location.pathname === '/doctor/settings' ? 'active' : ''}`}
+                         onClick={() => navigate('/doctor/settings')}>
+                        Settings
+                    </div>
                     <div className="nav-box logout-box" onClick={() => { localStorage.clear(); navigate('/login'); }}>
                         Logout
                     </div>

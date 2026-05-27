@@ -49,6 +49,12 @@ const Medications = () => {
                     >
                         Prescriptions
                     </div>
+                    <div
+                        className={`nav-box ${location.pathname === '/patient/settings' ? 'active' : ''}`}
+                        onClick={() => navigate('/patient/settings')}
+                    >
+                        Settings
+                    </div>
                     <div className="nav-box logout-box" onClick={() => { localStorage.clear(); navigate('/login'); }}>
                         Logout
                     </div>

@@ -81,19 +81,6 @@ const Register = () => {
                         </select>
                     </div>
 
-                    {form.role === 'DOCTOR' && (
-                        <div className="doctor-field-anim">
-                            <label className="form-label">Professional License Number</label>
-                            <input
-                                type="text"
-                                placeholder="PRC-1234567"
-                                className="form-input"
-                                required
-                                onChange={e => setForm({...form, licenseNumber: e.target.value})}
-                            />
-                        </div>
-                    )}
-
                     <button type="submit" className="btn-register">
                         Create Account
                     </button>

@@ -13,29 +13,32 @@ public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Matches SDD Section 3.2
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disabled for development/API testing
+                .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(request -> {
                     var config = new CorsConfiguration();
-                    // Allows your React app to communicate with the backend
-                    config.setAllowedOrigins(List.of("http://localhost:3000"));
-                    config.setAllowedMethods(List.of("GET", "POST", "PATCH", "PUT", "DELETE"));
+                    // Add your React frontend AND allow wildcard origins for mobile testing
+                    config.setAllowedOrigins(List.of("http://localhost:3000", "http://10.0.2.2", "http://12.0.0.1"));
+                    config.setAllowedOriginPatterns(List.of("*")); // Allows emulators/mobile wrappers to connect seamlessly
+                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
                     config.setAllowedHeaders(List.of("*"));
+                    config.setAllowCredentials(true);
                     return config;
                 }))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        // Permit the consultation endpoints so you can demo the main feature
                         .requestMatchers("/api/v1/consultations", "/api/v1/consultations/**").permitAll()
-                        .requestMatchers("/api/v1/medications", "/api/v1/medications/**", "/api/v1/schedules/**").permitAll()
+                        .requestMatchers("/api/v1/medications", "/api/v1/medications/**").permitAll()
+                        .requestMatchers("/api/v1/schedules", "/api/v1/schedules/**").permitAll()
+                        .requestMatchers("/api/v1/users", "/api/v1/users/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
         return http.build();
     }
-}
+}   

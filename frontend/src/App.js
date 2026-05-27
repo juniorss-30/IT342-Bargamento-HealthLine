@@ -8,6 +8,8 @@ import DoctorDashboard from './pages/Doctor/Dashboard';
 import PatientQueue from './pages/Doctor/PatientQueue';
 import Schedules from './pages/Doctor/Schedules';
 import Medications from './pages/Patient/Medications';
+import Settings from './pages/Patient/Settings';
+import DoctorSettings from "./pages/Doctor/DoctorSettings";
 
 function App() {
   return (
@@ -24,11 +26,13 @@ function App() {
           <Route path="/patient/dashboard" element={<PatientDashboard />} />
           <Route path="/patient/consultations" element={<Consultation />} />
           <Route path="/patient/medications" element={<Medications />} />
+            <Route path="/patient/settings" element={<Settings/>} />
 
           {/* Doctor Routes */}
           <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
           <Route path="/doctor/queue" element={<PatientQueue />} />
-          <Route path="/doctor/schedules" element={<Schedules />} /> {/* 2. Add the new route */}
+          <Route path="/doctor/schedules" element={<Schedules />} />
+          <Route path="/doctor/settings" element={<DoctorSettings />} />
 
           {/* Catch-all redirect */}
           <Route path="*" element={<Navigate to="/login" />} />

@@ -12,6 +12,7 @@ public class User {
     private Long id;
 
     @Column(name = "full_name", nullable = false)
+    @JsonProperty("fullName")
     private String fullName;
 
     @Column(unique = true, nullable = false)

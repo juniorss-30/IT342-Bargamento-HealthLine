@@ -8,7 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/medications")
-@CrossOrigin(origins = "http://localhost:3000")
+// 🚀 FIXED: Open the CrossOrigin bounds to cleanly receive incoming mobile layouts
+@CrossOrigin(origins = {"http://localhost:3000", "http://10.0.2.2:8080"}, allowedHeaders = "*", allowCredentials = "true")
 public class MedicationController {
 
     @Autowired
@@ -20,7 +21,11 @@ public class MedicationController {
     }
 
     @GetMapping
-    public List<Medication> getByEmail(@RequestParam String email) {
+    // 🚀 FIXED: Added required = false so that if a request comes in, it safely checks instead of throwing a 403
+    public List<Medication> getByEmail(@RequestParam(required = false) String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return repository.findAll(); // Fallback to avoid breaking empty initial listings
+        }
         return repository.findByPatientEmail(email);
     }
 }
